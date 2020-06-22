@@ -45,7 +45,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
         curl \
         vim \
         gnupg2 \
-        mysql-client \
+        default-mysql-client \
         ssh-client && \
     # Purge so apt-get update is more reliable
     rm -rf /var/lib/apt/lists/* && \

@@ -1,4 +1,4 @@
-FROM php:7.3-apache-stretch
+FROM php:7.3-apache-buster
 
 ARG PHP_XDEBUG=0
 ARG PHP_BLACKFIRE=0
@@ -45,7 +45,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
         curl \
         vim \
         gnupg2 \
-        mysql-client \
+        default-mysql-client \
         ssh-client && \
     # Purge so apt-get update is more reliable
     rm -rf /var/lib/apt/lists/* && \
