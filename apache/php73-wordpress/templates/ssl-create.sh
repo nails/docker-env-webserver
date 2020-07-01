@@ -24,6 +24,10 @@ if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
     fi
     DOMAINS=$(IFS=$','; echo "${DOMAINS[*]}")
 
+    if [[ ${SSL_ADDITIONAL_DOMAINS} != "" ]]; then
+        DOMAINS="${DOMAINS},${SSL_ADDITIONAL_DOMAINS}"
+    fi
+
     echo "Generating certificate for:"
     echo ${DOMAINS}
 
