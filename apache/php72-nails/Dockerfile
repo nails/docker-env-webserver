@@ -9,6 +9,7 @@ ARG PHP_BLACKFIRE_SERVER_TOKEN=""
 
 # Install: configuration files
 COPY templates/apache2.conf /etc/apache2/
+COPY templates/apache2.vhost.conf /etc/apache2/sites-available/default.conf
 COPY templates/php.ini /usr/local/etc/php/
 COPY templates/xdebug.ini /usr/local/etc/php/conf.d/
 COPY templates/blackfire.ini /usr/local/etc/php/conf.d/zz-blackfire.ini
@@ -56,7 +57,8 @@ RUN useradd -u 1000 -m www-bridge-user && \
     /usr/local/bin/certbot --version -n && \
     # Install: Node
     curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    apt-get update -y && apt-get install -y --no-install-recommends \
+    apt-get update -y && \
+    apt-get install -y --no-install-recommends \
         nodejs && \
     # Install: Yarn
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
@@ -92,10 +94,12 @@ RUN useradd -u 1000 -m www-bridge-user && \
     # Install: composer
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer && \
-    # Install: Nails Command Line Tool
-    su www-bridge-user -c 'composer global require nails/command-line-tool --no-ansi' && \
-    ln -s /home/www-bridge-user/.composer/vendor/bin/nails /usr/local/bin/nails && \
-    ln -s /home/www-bridge-user/.composer/vendor/bin/nails-cli /usr/local/bin/nails-cli && \
+    # Configure: Apache vhosts
+    a2dissite 000-default && \
+    a2dissite default-ssl && \
+    a2ensite default && \
+    rm -f /etc/apache2/sites-available/000-default.conf && \
+    rm -f /etc/apache2/sites-available/default-ssl.conf && \
     # Enable: Apache modules
     curl "https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb" > ~/mod_pagespeed.deb && \
     dpkg -i ~/mod_pagespeed.deb && \
@@ -108,7 +112,11 @@ RUN useradd -u 1000 -m www-bridge-user && \
     echo ". /env-apache.sh" >> /etc/apache2/envvars && \
     # Configure services to start on boot
     update-rc.d rsyslog enable && \
-    update-rc.d cron enable
+    update-rc.d cron enable && \
+    # Install: Nails Command Line Tool
+    su www-bridge-user -c 'composer global require nails/command-line-tool --no-ansi' && \
+    ln -s /home/www-bridge-user/.composer/vendor/bin/nails /usr/local/bin/nails && \
+    ln -s /home/www-bridge-user/.composer/vendor/bin/nails-cli /usr/local/bin/nails-cli
 
 # Install: bash aliases (after www-bridge-user has been created)
 COPY templates/.bash_aliases /root
