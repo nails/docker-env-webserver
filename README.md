@@ -31,8 +31,18 @@ Additional Framework tools and project configuration also available when using t
 
 ## Tags
 
-- `nails/docker-env-webserver:php74`, `nails/docker-env-webserver:latest`
 - `nails/docker-env-webserver:php74`
+- `nails/docker-env-webserver:php74-laravel`
+- `nails/docker-env-webserver:php74-nails`
+- `nails/docker-env-webserver:php74-wordpress`
+- `nails/docker-env-webserver:php73`
+- `nails/docker-env-webserver:php73-laravel`
+- `nails/docker-env-webserver:php73-nails`
+- `nails/docker-env-webserver:php73-wordpress`
+- `nails/docker-env-webserver:php72`
+- `nails/docker-env-webserver:php72-laravel`
+- `nails/docker-env-webserver:php72-nails`
+- `nails/docker-env-webserver:php72-wordpress`
 
 ## Building
 
