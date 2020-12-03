@@ -12,7 +12,7 @@ echo "Renewing SSL certificate for ${SSL_DOMAIN}"
 if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
     /root/.acme.sh/acme.sh \
         --renew \
-        --domain ${DOMAINS} || exit 1
+        --domain ${SSL_DOMAIN} || exit 1
 else
         echo "localhost detected, nothing to renew"
 fi
