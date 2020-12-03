@@ -31,24 +31,24 @@ Additional Framework tools and project configuration also available when using t
 
 ## Tags
 
-- `nails/docker-env-webserver:php74`
-- `nails/docker-env-webserver:php74-laravel`
-- `nails/docker-env-webserver:php74-nails`
-- `nails/docker-env-webserver:php74-wordpress`
-- `nails/docker-env-webserver:php73`
-- `nails/docker-env-webserver:php73-laravel`
-- `nails/docker-env-webserver:php73-nails`
-- `nails/docker-env-webserver:php73-wordpress`
-- `nails/docker-env-webserver:php72`
-- `nails/docker-env-webserver:php72-laravel`
-- `nails/docker-env-webserver:php72-nails`
-- `nails/docker-env-webserver:php72-wordpress`
+- `nails/docker-env-webserver:apache-php74`
+- `nails/docker-env-webserver:apache-php74-laravel`
+- `nails/docker-env-webserver:apache-php74-nails`
+- `nails/docker-env-webserver:apache-php74-wordpress`
+- `nails/docker-env-webserver:apache-php73`
+- `nails/docker-env-webserver:apache-php73-laravel`
+- `nails/docker-env-webserver:apache-php73-nails`
+- `nails/docker-env-webserver:apache-php73-wordpress`
+- `nails/docker-env-webserver:apache-php72`
+- `nails/docker-env-webserver:apache-php72-laravel`
+- `nails/docker-env-webserver:apache-php72-nails`
+- `nails/docker-env-webserver:apache-php72-wordpress`
 
 ## Building
 
 To compile and publish changes to these containers use the following commands:
 
 ```
-docker build -t nails/docker-env-webserver:<tag> ./php<version>
+docker build -t nails/docker-env-webserver:apache-php<version><framework> ./apache/php<version><framework>
 docker push nails/docker-env-webserver
 ```
