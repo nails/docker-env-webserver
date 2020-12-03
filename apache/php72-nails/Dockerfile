@@ -14,7 +14,9 @@ COPY templates/php.ini /usr/local/etc/php/
 COPY templates/xdebug.ini /usr/local/etc/php/conf.d/
 COPY templates/blackfire.ini /usr/local/etc/php/conf.d/zz-blackfire.ini
 COPY templates/opcache.ini /usr/local/etc/php/conf.d/
+COPY templates/ssl-prepare.sh /ssl-prepare.sh
 COPY templates/ssl-create.sh /ssl-create.sh
+COPY templates/ssl-renew.sh /ssl-renew.sh
 COPY templates/cron.sh /cron.sh
 
 # Install SSL certificate
@@ -51,10 +53,9 @@ RUN useradd -u 1000 -m www-bridge-user && \
     rm -rf /var/lib/apt/lists/* && \
     # Logging: Enable cron logs
     sed -i "s:#cron:cron:g" /etc/rsyslog.conf && \
-    # Install: certbot
-    curl https://dl.eff.org/certbot-auto -o /usr/local/bin/certbot && \
-    chmod a+x /usr/local/bin/certbot && \
-    /usr/local/bin/certbot --version -n && \
+    # Install acme.sh
+    curl https://get.acme.sh | sh && \
+    /root/.acme.sh/acme.sh --upgrade --auto-upgrade && \
     # Install: Node
     curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get update -y && \
