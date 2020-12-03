@@ -21,7 +21,7 @@ if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
 
    SSL_CERT="/root/.acme.sh/${SSL_DOMAIN}/${SSL_DOMAIN}.cer"
    SSL_KEY="/root/.acme.sh/${SSL_DOMAIN}/${SSL_DOMAIN}.key"
-   SSL_CHAIN="/root/.acme.sh/${SSL_DOMAIN}/fullchain.pem"
+   SSL_CHAIN="/root/.acme.sh/${SSL_DOMAIN}/fullchain.cer"
 
 else
     echo "Installing self-signed certificates for localhost:"
