@@ -8,7 +8,7 @@ These Dockerfiles build an Apache2 webserver, configured with PHP and various ot
     + Mod: SSL
     + Mod: Headers
     + Mod: Expires
-- Certbot
+- acme.sh
 - PHP (`72`, `73`, or `74`)
     + Extension: PDO
     + Extension: MySQLi
@@ -24,9 +24,9 @@ These Dockerfiles build an Apache2 webserver, configured with PHP and various ot
 
 Additional Framework tools and project configuration also available when using the `*-<framework>` tags:
 
-- `php<version>-nails`
-- `php<version>-laravel`
-- `php<version>-wordpress`
+- `apache-php<version>-nails`
+- `apache-php<version>-laravel`
+- `apache-php<version>-wordpress`
 
 
 ## Tags
