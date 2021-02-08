@@ -102,6 +102,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     rm -f /etc/apache2/sites-available/000-default.conf && \
     rm -f /etc/apache2/sites-available/default-ssl.conf && \
     # Enable: Apache modules
+    curl -fsSl "https://dl.google.com/linux/linux_signing_key.pub" | apt-key add - && \
     curl "https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb" > ~/mod_pagespeed.deb && \
     dpkg -i ~/mod_pagespeed.deb && \
     a2enmod rewrite && \
