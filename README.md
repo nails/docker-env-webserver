@@ -71,6 +71,7 @@ Build the base images, and push them, before building the framework images:
 docker build -t nails/docker-env-webserver:apache-php72 ./apache/php72
 docker build -t nails/docker-env-webserver:apache-php73 ./apache/php73
 docker build -t nails/docker-env-webserver:apache-php74 ./apache/php74
+docker build -t nails/docker-env-webserver:apache-php80 ./apache/php80
 docker push nails/docker-env-webserver -a
 ```
 
@@ -81,16 +82,19 @@ Once base images are pushed, build the base images:
 docker build -t nails/docker-env-webserver:apache-php72-nails ./apache/php72-nails
 docker build -t nails/docker-env-webserver:apache-php73-nails ./apache/php73-nails
 docker build -t nails/docker-env-webserver:apache-php74-nails ./apache/php74-nails
+docker build -t nails/docker-env-webserver:apache-php80-nails ./apache/php80-nails
 
 # Laravel images
 docker build -t nails/docker-env-webserver:apache-php72-laravel ./apache/php72-laravel
 docker build -t nails/docker-env-webserver:apache-php73-laravel ./apache/php73-laravel
 docker build -t nails/docker-env-webserver:apache-php74-laravel ./apache/php74-laravel
+docker build -t nails/docker-env-webserver:apache-php80-laravel ./apache/php80-laravel
 
 # WordPress images
 docker build -t nails/docker-env-webserver:apache-php72-wordpress ./apache/php72-wordpress
 docker build -t nails/docker-env-webserver:apache-php73-wordpress ./apache/php73-wordpress
 docker build -t nails/docker-env-webserver:apache-php74-wordpress ./apache/php74-wordpress
+docker build -t nails/docker-env-webserver:apache-php80-wordpress ./apache/php80-wordpress
 
 # Push changes
 docker push nails/docker-env-webserver -a
