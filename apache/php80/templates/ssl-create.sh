@@ -17,7 +17,14 @@ if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
     /root/.acme.sh/acme.sh \
         --issue \
         --domain ${DOMAINS} \
-        --webroot /var/www/html || exit 1
+        --webroot /var/www/html/web
+
+    exitCode=$?
+    # Check exit code, code 2 is a "didn't renew" so don't consider it an error
+    if [ "$exitCode" != "0" ] && [ "$exitCode" != "2" ]; then
+        echo "acme.sh exited with code $exitCode"
+        exit $exitCode
+    fi
 
     SSL_CERT="/root/.acme.sh/${SSL_DOMAIN}/${SSL_DOMAIN}.cer"
     SSL_KEY="/root/.acme.sh/${SSL_DOMAIN}/${SSL_DOMAIN}.key"
