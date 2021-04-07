@@ -1,0 +1,49 @@
+{
+    "name": "nails/docker-env-webserver",
+    "description": "The Nails Docker Environment: Webserver",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pablo de la Peña",
+            "email": "p@nailsapp.co.uk"
+        }
+    ],
+    "require": {},
+    "scripts": {
+        "compile-all-and-push": [
+            "@composer compile-base",
+            "@composer push",
+            "@composer compile-nails",
+            "@composer compile-laravel",
+            "@composer compile-wordpress",
+            "@composer push"
+        ],
+        "compile-base": [
+            "docker build -t nails/docker-env-webserver:apache-php72 ./apache/php72",
+            "docker build -t nails/docker-env-webserver:apache-php73 ./apache/php73",
+            "docker build -t nails/docker-env-webserver:apache-php74 ./apache/php74",
+            "docker build -t nails/docker-env-webserver:apache-php80 ./apache/php80"
+        ],
+        "compile-nails": [
+            "docker build -t nails/docker-env-webserver:apache-php72-nails ./apache/php72-nails",
+            "docker build -t nails/docker-env-webserver:apache-php73-nails ./apache/php73-nails",
+            "docker build -t nails/docker-env-webserver:apache-php74-nails ./apache/php74-nails",
+            "docker build -t nails/docker-env-webserver:apache-php80-nails ./apache/php80-nails"
+        ],
+        "compile-laravel": [
+            "docker build -t nails/docker-env-webserver:apache-php72-laravel ./apache/php72-laravel",
+            "docker build -t nails/docker-env-webserver:apache-php73-laravel ./apache/php73-laravel",
+            "docker build -t nails/docker-env-webserver:apache-php74-laravel ./apache/php74-laravel",
+            "docker build -t nails/docker-env-webserver:apache-php80-laravel ./apache/php80-laravel"
+        ],
+        "compile-wordpress": [
+            "docker build -t nails/docker-env-webserver:apache-php72-wordpress ./apache/php72-wordpress",
+            "docker build -t nails/docker-env-webserver:apache-php73-wordpress ./apache/php73-wordpress",
+            "docker build -t nails/docker-env-webserver:apache-php74-wordpress ./apache/php74-wordpress",
+            "docker build -t nails/docker-env-webserver:apache-php80-wordpress ./apache/php80-wordpress"
+        ],
+        "push": [
+            "docker push nails/docker-env-webserver -a"
+        ]
+    }
+}

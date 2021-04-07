@@ -62,6 +62,22 @@ docker build -t nails/docker-env-webserver:apache-php<version><framework> ./apac
 docker push nails/docker-env-webserver -a
 ```
 
+Composer scripts are available to make this easier:
+
+```bash
+# Compile and push everything, in the correct order
+composer compile-all-and-push
+
+# Compile just the specific frameworks
+composer compile-base
+composer compile-nails
+composer compile-laravel
+composer compile-wordpress
+
+# Push tags to Docker Hub
+composer push
+```
+
 
 ### Order is important
 
@@ -75,7 +91,7 @@ docker build -t nails/docker-env-webserver:apache-php80 ./apache/php80
 docker push nails/docker-env-webserver -a
 ```
 
-Once base images are pushed, build the base images:
+Once base images are pushed, build the framework images:
 
 ```bash
 # Nails images
