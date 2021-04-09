@@ -18,11 +18,26 @@
             "@composer compile-wordpress",
             "@composer push"
         ],
+        "copy-templates": [
+            "@composer delete-templates",
+            "cp -R ./apache/common ./apache/php72/templates",
+            "cp -R ./apache/common ./apache/php73/templates",
+            "cp -R ./apache/common ./apache/php74/templates",
+            "cp -R ./apache/common ./apache/php80/templates"
+        ],
+        "delete-templates": [
+            "rm -rf ./apache/php72/templates",
+            "rm -rf ./apache/php73/templates",
+            "rm -rf ./apache/php74/templates",
+            "rm -rf ./apache/php80/templates"
+        ],
         "compile-base": [
+            "@composer copy-templates",
             "docker build -t nails/docker-env-webserver:apache-php72 ./apache/php72",
             "docker build -t nails/docker-env-webserver:apache-php73 ./apache/php73",
             "docker build -t nails/docker-env-webserver:apache-php74 ./apache/php74",
-            "docker build -t nails/docker-env-webserver:apache-php80 ./apache/php80"
+            "docker build -t nails/docker-env-webserver:apache-php80 ./apache/php80",
+            "@composer delete-templates"
         ],
         "compile-nails": [
             "docker build -t nails/docker-env-webserver:apache-php72-nails ./apache/php72-nails",

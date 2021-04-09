@@ -18,6 +18,7 @@ COPY templates/ssl-prepare.sh /ssl-prepare.sh
 COPY templates/ssl-create.sh /ssl-create.sh
 COPY templates/ssl-renew.sh /ssl-renew.sh
 COPY templates/cron.sh /cron.sh
+COPY templates/install-framework.sh /install-framework.sh
 
 # Install SSL certificate
 COPY templates/ssl/localhost.crt /etc/ssl/localhost/
