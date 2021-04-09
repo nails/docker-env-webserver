@@ -20,16 +20,47 @@
         ],
         "copy-templates": [
             "@composer delete-templates",
+
             "cp -R ./apache/common ./apache/php72/templates",
+            "cp -R ./apache/common-nails ./apache/php72-nails/templates",
+            "cp -R ./apache/common-laravel ./apache/php72-laravel/templates",
+            "cp -R ./apache/common-wordpress ./apache/php72-wordpress/templates",
+
             "cp -R ./apache/common ./apache/php73/templates",
+            "cp -R ./apache/common-nails ./apache/php73-nails/templates",
+            "cp -R ./apache/common-laravel ./apache/php73-laravel/templates",
+            "cp -R ./apache/common-wordpress ./apache/php73-wordpress/templates",
+
             "cp -R ./apache/common ./apache/php74/templates",
-            "cp -R ./apache/common ./apache/php80/templates"
+            "cp -R ./apache/common-nails ./apache/php74-nails/templates",
+            "cp -R ./apache/common-laravel ./apache/php74-laravel/templates",
+            "cp -R ./apache/common-wordpress ./apache/php74-wordpress/templates",
+
+            "cp -R ./apache/common ./apache/php80/templates",
+            "cp -R ./apache/common-nails ./apache/php80-nails/templates",
+            "cp -R ./apache/common-laravel ./apache/php80-laravel/templates",
+            "cp -R ./apache/common-wordpress ./apache/php80-wordpress/templates"
         ],
         "delete-templates": [
             "rm -rf ./apache/php72/templates",
+            "rm -rf ./apache/php72-nails/templates",
+            "rm -rf ./apache/php72-laravel/templates",
+            "rm -rf ./apache/php72-wordpress/templates",
+
             "rm -rf ./apache/php73/templates",
+            "rm -rf ./apache/php73-nails/templates",
+            "rm -rf ./apache/php73-laravel/templates",
+            "rm -rf ./apache/php73-wordpress/templates",
+
             "rm -rf ./apache/php74/templates",
-            "rm -rf ./apache/php80/templates"
+            "rm -rf ./apache/php74-nails/templates",
+            "rm -rf ./apache/php74-laravel/templates",
+            "rm -rf ./apache/php74-wordpress/templates",
+
+            "rm -rf ./apache/php80/templates",
+            "rm -rf ./apache/php80-nails/templates",
+            "rm -rf ./apache/php80-laravel/templates",
+            "rm -rf ./apache/php80-wordpress/templates"
         ],
         "compile-base": [
             "@composer copy-templates",

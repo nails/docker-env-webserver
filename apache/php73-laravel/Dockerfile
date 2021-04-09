@@ -1,5 +1,7 @@
 FROM nails/docker-env-webserver:apache-php73
 
+COPY templates/install-framework.sh /install-framework.sh
+
 # Ensure:
 # – /var/www/html/public exists
 # – Apache is pointing at /var/www/html/public
