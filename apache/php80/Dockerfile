@@ -96,7 +96,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     # Install: composer
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer && \
-    echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc && \
+    echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> /home/www-bridge-user/.bashrc && \
     # Configure: Apache vhosts
     a2dissite 000-default && \
     a2dissite default-ssl && \
