@@ -7,7 +7,7 @@ echo "+------------------------------+"
 # --------------------------------------------------------------------------
 
 SOURCE="/install-framework"
-TARGET="/home/www-bridge-user"
+TARGET="/var/www/html"
 
 # --------------------------------------------------------------------------
 
@@ -79,4 +79,4 @@ echo "" >> "$TARGET/web/app/themes/custom-theme/functions.php"
 
 # Copy the welcome file
 rm -f "$TARGET/web/index.php"
-cp "/install-framework/index.php" "$TARGET/web/index.php"
+cp "$SOURCE/index.php" "$TARGET/web/index.php"

@@ -6,7 +6,7 @@ echo "+----------------------------+"
 
 # --------------------------------------------------------------------------
 
-TARGET="/home/www-bridge-user"
+TARGET="/var/www/html"
 
 # --------------------------------------------------------------------------
 
@@ -15,5 +15,8 @@ if ! [[ -x "$(command -v laravel)" ]]; then
     composer global require "laravel/installer"
 fi
 
+# Ensure Composer bin dir is in $PATH
+export PATH="$PATH:$HOME/.composer/vendor/bin"
+
 echo "... installing Laravel"
-laravel new $TARGET --force
+composer create-project laravel/laravel $TARGET
