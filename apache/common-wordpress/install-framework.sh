@@ -56,6 +56,11 @@ echo "NONCE_SALT='${NONCE_SALT}'" >> "$TARGET/.env"
 
 # --------------------------------------------------------------------------
 
+# Ensure the environment is lowercase
+sed -i "s/env('WP_ENV')/strtolower(env('WP_ENV'))/g" "$TARGET/config/application.php"
+
+# --------------------------------------------------------------------------
+
 echo "... Generating build and watch scripts"
 mkdir -p "$TARGET/scripts"
 cp "$SOURCE/scripts/build.sh" "$TARGET/scripts/build.sh"
