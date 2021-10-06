@@ -31,6 +31,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     cp /etc/skel/.profile ~/ && \
     # Install: dependencies
     apt-get update -y && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         dnsutils \
         rsyslog \
