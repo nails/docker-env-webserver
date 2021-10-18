@@ -15,6 +15,7 @@ if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
     echo ${DOMAINS}
 
     /root/.acme.sh/acme.sh \
+        --server letsencrypt \
         --issue \
         --domain ${DOMAINS} \
         --webroot /var/www/html
