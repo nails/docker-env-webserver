@@ -17,7 +17,7 @@ These Dockerfiles build an Apache2 webserver, configured with PHP and various ot
     + Extension: Zip
     + Extension: INTL
 - Composer
-- Node
+- Node (16)
 - Yarn
 - Xdebug (if `$PHP_XDEBUG` is `1`)
 - Blackfire (if `$PHP_BLACKFIRE` is `1`)
