@@ -61,7 +61,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     # Install: Node
     curl -sL https://git.io/n-install | bash -s -- -y 16.13 && \
     # Install: Yarn
-    npm install -g yarn && \
+    bash -c "export PATH+=':/root/n/bin' && npm install -g yarn" && \
     # Install: PHP extensions
     docker-php-ext-configure gd \
         --with-freetype-dir=/usr/include/ \
