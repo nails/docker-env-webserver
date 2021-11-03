@@ -59,8 +59,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     curl https://get.acme.sh | sh && \
     /root/.acme.sh/acme.sh --upgrade --auto-upgrade && \
     # Install: Node
-    curl -L https://git.io/n-install | bash && \
-    n 16 && \
+    curl -sL https://git.io/n-install | bash -s -- -y 16.13 && \
     # Install: Yarn
     npm install -g yarn && \
     # Install: PHP extensions
