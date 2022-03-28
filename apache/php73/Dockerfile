@@ -1,4 +1,4 @@
-FROM php:7.3-apache-buster
+FROM php:7.3-apache-bullseye
 
 ARG PHP_XDEBUG=0
 ARG PHP_BLACKFIRE=0
