@@ -59,9 +59,12 @@ RUN useradd -u 1000 -m www-bridge-user && \
     curl https://get.acme.sh | sh && \
     /root/.acme.sh/acme.sh --upgrade --auto-upgrade && \
     # Install: Node
-    curl -sL https://git.io/n-install | bash -s -- -y 16.13 && \
-    # Install: Yarn
-    bash -c "export PATH+=':/root/n/bin' && npm install -g yarn" && \
+    runuser -l www-bridge-user -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash" && \
+    runuser -l www-bridge-user -c "nvm install 16" && \
+    echo 'export NVM_DIR="$HOME/.nvm"' >> /home/www-bridge-user/.bashrc && \
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> /home/www-bridge-user/.bashrc && \
+    # Install: Yarn \
+    runuser -l www-bridge-user -c "npm install -g yarn" && \
     # Install: PHP extensions
     docker-php-ext-configure gd \
         --with-freetype-dir=/usr/include/ \
