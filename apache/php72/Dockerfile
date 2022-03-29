@@ -33,24 +33,24 @@ RUN useradd -u 1000 -m www-bridge-user && \
     apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-        dnsutils \
-        rsyslog \
-        logrotate \
         cron \
-        git \
-        zip \
-        unzip \
-        libpng-dev \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libicu-dev \
-        libnotify-bin \
-        libcurl4-openssl-dev \
         curl \
-        vim \
-        gnupg2 \
         default-mysql-client \
-        ssh-client && \
+        dnsutils \
+        git \
+        gnupg2 \
+        libcurl4-openssl-dev \
+        libfreetype6-dev \
+        libicu-dev \
+        libjpeg62-turbo-dev \
+        libnotify-bin \
+        libpng-dev \
+        logrotate \
+        rsyslog \
+        ssh-client \
+        unzip \
+        vim \
+        zip && \
     # Purge so apt-get update is more reliable
     rm -rf /var/lib/apt/lists/* && \
     # Logging: Enable cron logs
@@ -58,25 +58,26 @@ RUN useradd -u 1000 -m www-bridge-user && \
     # Install acme.sh
     curl https://get.acme.sh | sh && \
     /root/.acme.sh/acme.sh --upgrade --auto-upgrade && \
-    # Install: Node
+    # Install: Node, n, and yarn
     curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g n && \
-    # Install: Yarn
-    npm install -g yarn && \
+    apt-get install -y \
+        nodejs && \
+    npm install -gy \
+        n \
+        yarn && \
     # Install: PHP extensions
     docker-php-ext-configure gd \
         --with-freetype-dir=/usr/include/ \
         --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-configure intl && \
     docker-php-ext-install \
+        curl \
+        gd \
+        intl \
+        mysqli \
         pdo \
         pdo_mysql \
-        mysqli \
-        gd \
-        curl \
-        zip \
-        intl && \
+        zip && \
     # Install: Xdebug
     if [ "$PHP_XDEBUG" = "1" ]; then pecl install xdebug; else rm /usr/local/etc/php/conf.d/xdebug.ini; fi && \
     # Install: Blackfire
@@ -103,10 +104,10 @@ RUN useradd -u 1000 -m www-bridge-user && \
     curl -fsSl "https://dl.google.com/linux/linux_signing_key.pub" | apt-key add - && \
     curl "https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb" > ~/mod_pagespeed.deb && \
     dpkg -i ~/mod_pagespeed.deb && \
+    a2enmod expires && \
+    a2enmod headers && \
     a2enmod rewrite && \
     a2enmod ssl && \
-    a2enmod headers && \
-    a2enmod expires && \
     # Add env vars to Apache
     touch /env-apache.sh && \
     echo ". /env-apache.sh" >> /etc/apache2/envvars && \
