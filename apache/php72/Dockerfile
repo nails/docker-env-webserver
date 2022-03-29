@@ -46,6 +46,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
         libnotify-bin \
         libpng-dev \
         logrotate \
+        python \
         rsyslog \
         ssh-client \
         unzip \
