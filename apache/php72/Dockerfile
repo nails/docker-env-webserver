@@ -105,6 +105,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     curl -fsSl "https://dl.google.com/linux/linux_signing_key.pub" | apt-key add - && \
     curl "https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb" > ~/mod_pagespeed.deb && \
     dpkg -i ~/mod_pagespeed.deb && \
+    apt-get install -y --no-install-recommends -f && \
     a2enmod expires && \
     a2enmod headers && \
     a2enmod rewrite && \
