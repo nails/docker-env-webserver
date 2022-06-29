@@ -27,9 +27,18 @@ if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
         exit $exitCode
     fi
 
-    SSL_CERT="/root/.acme.sh/${SSL_DOMAIN}/${SSL_DOMAIN}.cer"
-    SSL_KEY="/root/.acme.sh/${SSL_DOMAIN}/${SSL_DOMAIN}.key"
-    SSL_CHAIN="/root/.acme.sh/${SSL_DOMAIN}/fullchain.cer"
+    mkdir -p /etc/ssl/active
+
+    SSL_CERT="/etc/ssl/active/cert.crt"
+    SSL_KEY="/etc/ssl/active/key.key"
+    SSL_CHAIN="/etc/ssl/active/fullchain.pem"
+
+    /root/acme.sh/acme.sh \
+        --install-cert \
+        -d ${SSL_DOMAIN} \
+        --cert-file "${SSL_CERT}" \
+        --key-file "${SSL_KEY}" \
+        --fullchain-file "${SSL_CHAIN}"
 
 else
     echo "Installing self-signed certificates for localhost:"
