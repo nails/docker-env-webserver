@@ -60,6 +60,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     # Install acme.sh
     git clone https://github.com/acmesh-official/acme.sh.git /root/acme.sh && \
     cd /root/acme.sh && \
+    /root/acme.sh/acme.sh --install --cert-home "/root/acme.sh/certs" && \
     # Install: Node, n, and yarn
     curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs && \
