@@ -60,7 +60,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     # Install acme.sh
     curl https://get.acme.sh | sh && \
     /root/.acme.sh/acme.sh --upgrade --auto-upgrade && \
-    # Install: Node
+    # Install: Node, n, and yarn
     curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y \
         nodejs && \

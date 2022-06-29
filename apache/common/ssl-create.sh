@@ -47,6 +47,5 @@ sed -i -E "s:SSLCertificateChainFile(.*) (.*):SSLCertificateChainFile\1 ${SSL_CH
 
 # --------------------------------------------------------------------------
 
-# Reload apache
-echo "Reloading Apache"
+echo "Reloading Apache:"
 service apache2 reload
