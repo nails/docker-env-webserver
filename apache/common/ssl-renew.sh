@@ -11,7 +11,7 @@ echo "Renewing SSL certificate for ${SSL_DOMAIN}"
 # Generate certificate and set variables
 if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
 
-    /root/.acme.sh/acme.sh \
+    /root/acme.sh/acme.sh \
         --server letsencrypt \
         --renew \
         --domain ${SSL_DOMAIN}

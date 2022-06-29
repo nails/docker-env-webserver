@@ -14,7 +14,7 @@ if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
     echo "Generating certificate for:"
     echo ${DOMAINS}
 
-    /root/.acme.sh/acme.sh \
+    /root/acme.sh/acme.sh \
         --server letsencrypt \
         --issue \
         --domain ${DOMAINS} \

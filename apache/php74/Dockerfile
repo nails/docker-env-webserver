@@ -58,8 +58,8 @@ RUN useradd -u 1000 -m www-bridge-user && \
     # Logging: Enable cron logs
     sed -i "s:#cron:cron:g" /etc/rsyslog.conf && \
     # Install acme.sh
-    curl https://get.acme.sh | sh && \
-    /root/.acme.sh/acme.sh --upgrade --auto-upgrade && \
+    git clone https://github.com/acmesh-official/acme.sh.git /root/acme.sh && \
+    cd /root/acme.sh && \
     # Install: Node, n, and yarn
     curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs && \
