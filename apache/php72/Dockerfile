@@ -21,10 +21,10 @@ COPY templates/cron.sh /cron.sh
 COPY templates/install-framework.sh /install-framework.sh
 
 # Install SSL certificate
-COPY templates/ssl/localhost.crt /etc/ssl/localhost/
-COPY templates/ssl/localhost.csr /etc/ssl/localhost/
-COPY templates/ssl/localhost.key /etc/ssl/localhost/
-COPY templates/ssl/localhost.pem /etc/ssl/localhost/
+COPY templates/ssl/localhost.crt /etc/ssl/localhost/cert.crt
+COPY templates/ssl/localhost.csr /etc/ssl/localhost/csr.csr
+COPY templates/ssl/localhost.key /etc/ssl/localhost/key.key
+COPY templates/ssl/localhost.pem /etc/ssl/localhost/fullchain.pem
 
 RUN useradd -u 1000 -m www-bridge-user && \
     cp /etc/skel/.bashrc ~/ && \

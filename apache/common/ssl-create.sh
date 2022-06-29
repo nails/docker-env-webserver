@@ -33,9 +33,9 @@ if [[  "${SSL_DOMAIN}" != "localhost"  ]]; then
 
 else
     echo "Installing self-signed certificates for localhost:"
-    SSL_CERT="/etc/ssl/localhost/localhost.crt"
-    SSL_KEY="/etc/ssl/localhost/localhost.key"
-    SSL_CHAIN="/etc/ssl/localhost/localhost.pem"
+    SSL_CERT="/etc/ssl/localhost/cert.crt"
+    SSL_KEY="/etc/ssl/localhost/key.key"
+    SSL_CHAIN="/etc/ssl/localhost/fullchain.pem"
 fi
 
 # --------------------------------------------------------------------------
