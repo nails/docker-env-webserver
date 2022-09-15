@@ -104,14 +104,14 @@ RUN useradd -u 1000 -m www-bridge-user && \
     rm -f /etc/apache2/sites-available/000-default.conf && \
     rm -f /etc/apache2/sites-available/default-ssl.conf && \
     # Enable: Apache modules
-    curl -fsSl "https://dl.google.com/linux/linux_signing_key.pub" | apt-key add - && \
-    curl "https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb" > ~/mod_pagespeed.deb && \
-    dpkg -i ~/mod_pagespeed.deb && \
-    apt-get install -y --no-install-recommends -f && \
     a2enmod expires && \
     a2enmod headers && \
     a2enmod rewrite && \
     a2enmod ssl && \
+    # Install:  pagespeed \
+    curl -o mod_pagespeed.deb https://dlcdn.apache.org/incubator/pagespeed/1.14.36.1/x64/mod-pagespeed-apache-incubating-beta_1.14.36.1-r0_amd64.deb && \
+    dpkg -i mod_pagespeed.deb && \
+    service apache2 restart && \
     # Add env vars to Apache
     touch /env-apache.sh && \
     echo ". /env-apache.sh" >> /etc/apache2/envvars && \
