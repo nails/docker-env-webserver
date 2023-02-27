@@ -60,7 +60,25 @@
             "cp -R ./apache/common-xdebug ./apache/php80-xdebug/templates",
             "cp -R ./apache/common-xdebug ./apache/php80-nails-xdebug/templates",
             "cp -R ./apache/common-xdebug ./apache/php80-laravel-xdebug/templates",
-            "cp -R ./apache/common-xdebug ./apache/php80-wordpress-xdebug/templates"
+            "cp -R ./apache/common-xdebug ./apache/php80-wordpress-xdebug/templates",
+
+            "cp -R ./apache/common ./apache/php81/templates",
+            "cp -R ./apache/common-nails ./apache/php81-nails/templates",
+            "cp -R ./apache/common-laravel ./apache/php81-laravel/templates",
+            "cp -R ./apache/common-wordpress ./apache/php81-wordpress/templates",
+            "cp -R ./apache/common-xdebug ./apache/php81-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php81-nails-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php81-laravel-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php81-wordpress-xdebug/templates",
+
+            "cp -R ./apache/common ./apache/php82/templates",
+            "cp -R ./apache/common-nails ./apache/php82-nails/templates",
+            "cp -R ./apache/common-laravel ./apache/php82-laravel/templates",
+            "cp -R ./apache/common-wordpress ./apache/php82-wordpress/templates",
+            "cp -R ./apache/common-xdebug ./apache/php82-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php82-nails-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php82-laravel-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php82-wordpress-xdebug/templates"
         ],
         "delete-templates": [
             "rm -rf ./apache/php72/templates",
@@ -97,7 +115,25 @@
             "rm -rf ./apache/php80-laravel/templates",
             "rm -rf ./apache/php80-laravel-xdebug/templates",
             "rm -rf ./apache/php80-wordpress/templates",
-            "rm -rf ./apache/php80-wordpress-xdebug/templates"
+            "rm -rf ./apache/php80-wordpress-xdebug/templates",
+
+            "rm -rf ./apache/php81/templates",
+            "rm -rf ./apache/php81-xdebug/templates",
+            "rm -rf ./apache/php81-nails/templates",
+            "rm -rf ./apache/php81-nails-xdebug/templates",
+            "rm -rf ./apache/php81-laravel/templates",
+            "rm -rf ./apache/php81-laravel-xdebug/templates",
+            "rm -rf ./apache/php81-wordpress/templates",
+            "rm -rf ./apache/php81-wordpress-xdebug/templates",
+
+            "rm -rf ./apache/php82/templates",
+            "rm -rf ./apache/php82-xdebug/templates",
+            "rm -rf ./apache/php82-nails/templates",
+            "rm -rf ./apache/php82-nails-xdebug/templates",
+            "rm -rf ./apache/php82-laravel/templates",
+            "rm -rf ./apache/php82-laravel-xdebug/templates",
+            "rm -rf ./apache/php82-wordpress/templates",
+            "rm -rf ./apache/php82-wordpress-xdebug/templates"
         ],
         "compile-base": [
             "@composer copy-templates",
@@ -105,6 +141,8 @@
             "docker build -t nails/docker-env-webserver:apache-php73 ./apache/php73",
             "docker build -t nails/docker-env-webserver:apache-php74 ./apache/php74",
             "docker build -t nails/docker-env-webserver:apache-php80 ./apache/php80",
+            "docker build -t nails/docker-env-webserver:apache-php81 ./apache/php81",
+            "docker build -t nails/docker-env-webserver:apache-php82 ./apache/php82",
             "@composer delete-templates"
         ],
         "compile-base-xdebug": [
@@ -113,6 +151,8 @@
             "docker build -t nails/docker-env-webserver:apache-php73-xdebug ./apache/php73-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php74-xdebug ./apache/php74-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php80-xdebug ./apache/php80-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php81-xdebug ./apache/php81-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php82-xdebug ./apache/php82-xdebug",
             "@composer delete-templates"
         ],
         "compile-nails": [
@@ -121,6 +161,8 @@
             "docker build -t nails/docker-env-webserver:apache-php73-nails ./apache/php73-nails",
             "docker build -t nails/docker-env-webserver:apache-php74-nails ./apache/php74-nails",
             "docker build -t nails/docker-env-webserver:apache-php80-nails ./apache/php80-nails",
+            "docker build -t nails/docker-env-webserver:apache-php81-nails ./apache/php81-nails",
+            "docker build -t nails/docker-env-webserver:apache-php82-nails ./apache/php82-nails",
             "@composer delete-templates"
         ],
         "compile-nails-xdebug": [
@@ -129,6 +171,8 @@
             "docker build -t nails/docker-env-webserver:apache-php73-nails-xdebug ./apache/php73-nails-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php74-nails-xdebug ./apache/php74-nails-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php80-nails-xdebug ./apache/php80-nails-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php81-nails-xdebug ./apache/php81-nails-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php82-nails-xdebug ./apache/php82-nails-xdebug",
             "@composer delete-templates"
         ],
         "compile-laravel": [
@@ -137,6 +181,8 @@
             "docker build -t nails/docker-env-webserver:apache-php73-laravel ./apache/php73-laravel",
             "docker build -t nails/docker-env-webserver:apache-php74-laravel ./apache/php74-laravel",
             "docker build -t nails/docker-env-webserver:apache-php80-laravel ./apache/php80-laravel",
+            "docker build -t nails/docker-env-webserver:apache-php81-laravel ./apache/php81-laravel",
+            "docker build -t nails/docker-env-webserver:apache-php82-laravel ./apache/php82-laravel",
             "@composer delete-templates"
         ],
         "compile-laravel-xdebug": [
@@ -145,6 +191,8 @@
             "docker build -t nails/docker-env-webserver:apache-php73-laravel-xdebug ./apache/php73-laravel-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php74-laravel-xdebug ./apache/php74-laravel-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php80-laravel-xdebug ./apache/php80-laravel-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php81-laravel-xdebug ./apache/php81-laravel-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php82-laravel-xdebug ./apache/php82-laravel-xdebug",
             "@composer delete-templates"
         ],
         "compile-wordpress": [
@@ -153,6 +201,8 @@
             "docker build -t nails/docker-env-webserver:apache-php73-wordpress ./apache/php73-wordpress",
             "docker build -t nails/docker-env-webserver:apache-php74-wordpress ./apache/php74-wordpress",
             "docker build -t nails/docker-env-webserver:apache-php80-wordpress ./apache/php80-wordpress",
+            "docker build -t nails/docker-env-webserver:apache-php81-wordpress ./apache/php81-wordpress",
+            "docker build -t nails/docker-env-webserver:apache-php82-wordpress ./apache/php82-wordpress",
             "@composer delete-templates"
         ],
         "compile-wordpress-xdebug": [
@@ -161,6 +211,8 @@
             "docker build -t nails/docker-env-webserver:apache-php73-wordpress-xdebug ./apache/php73-wordpress-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php74-wordpress-xdebug ./apache/php74-wordpress-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php80-wordpress-xdebug ./apache/php80-wordpress-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php81-wordpress-xdebug ./apache/php81-wordpress-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php82-wordpress-xdebug ./apache/php82-wordpress-xdebug",
             "@composer delete-templates"
         ],
         "push": [
