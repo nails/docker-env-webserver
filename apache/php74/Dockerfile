@@ -62,7 +62,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     cd /root/acme.sh && \
     /root/acme.sh/acme.sh --install --cert-home "/root/acme.sh/certs" && \
     # Install: Node, n, and yarn
-    curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs && \
     apt-get install -y \
         nodejs && \
@@ -109,10 +109,6 @@ RUN useradd -u 1000 -m www-bridge-user && \
     a2enmod headers && \
     a2enmod rewrite && \
     a2enmod ssl && \
-    # Install:  pagespeed \
-    curl -o mod_pagespeed.deb https://dlcdn.apache.org/incubator/pagespeed/1.14.36.1/x64/mod-pagespeed-apache-incubating-beta_1.14.36.1-r0_amd64.deb && \
-    dpkg -i mod_pagespeed.deb && \
-    service apache2 restart && \
     # Add env vars to Apache
     touch /env-apache.sh && \
     echo ". /env-apache.sh" >> /etc/apache2/envvars && \
