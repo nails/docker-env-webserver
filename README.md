@@ -9,7 +9,7 @@ These Dockerfiles build an Apache2 webserver, configured with PHP and various ot
     + Mod: Headers
     + Mod: Expires
 - acme.sh
-- PHP (`72`, `73`, `74`, `80`, `81`, `82`)
+- PHP (`72`, `73`, `74`, `80`, `81`, `82`, `83`, `84`)
     + Extension: PDO
     + Extension: MySQLi
     + Extension: GD
@@ -35,6 +35,16 @@ apache-php<version>-wordpress
 ## Tags
 
 ```bash
+nails/docker-env-webserver:apache-php84
+nails/docker-env-webserver:apache-php84-laravel
+nails/docker-env-webserver:apache-php84-nails
+nails/docker-env-webserver:apache-php84-wordpress
+
+nails/docker-env-webserver:apache-php83
+nails/docker-env-webserver:apache-php83-laravel
+nails/docker-env-webserver:apache-php83-nails
+nails/docker-env-webserver:apache-php83-wordpress
+
 nails/docker-env-webserver:apache-php82
 nails/docker-env-webserver:apache-php82-laravel
 nails/docker-env-webserver:apache-php82-nails
@@ -105,6 +115,8 @@ docker build -t nails/docker-env-webserver:apache-php74 ./apache/php74
 docker build -t nails/docker-env-webserver:apache-php80 ./apache/php80
 docker build -t nails/docker-env-webserver:apache-php81 ./apache/php81
 docker build -t nails/docker-env-webserver:apache-php82 ./apache/php82
+docker build -t nails/docker-env-webserver:apache-php83 ./apache/php83
+docker build -t nails/docker-env-webserver:apache-php84 ./apache/php84
 docker push nails/docker-env-webserver -a
 ```
 
@@ -118,6 +130,8 @@ docker build -t nails/docker-env-webserver:apache-php74-nails ./apache/php74-nai
 docker build -t nails/docker-env-webserver:apache-php80-nails ./apache/php80-nails
 docker build -t nails/docker-env-webserver:apache-php81-nails ./apache/php81-nails
 docker build -t nails/docker-env-webserver:apache-php82-nails ./apache/php82-nails
+docker build -t nails/docker-env-webserver:apache-php83-nails ./apache/php83-nails
+docker build -t nails/docker-env-webserver:apache-php84-nails ./apache/php84-nails
 
 # Laravel images
 docker build -t nails/docker-env-webserver:apache-php72-laravel ./apache/php72-laravel
@@ -126,6 +140,8 @@ docker build -t nails/docker-env-webserver:apache-php74-laravel ./apache/php74-l
 docker build -t nails/docker-env-webserver:apache-php80-laravel ./apache/php80-laravel
 docker build -t nails/docker-env-webserver:apache-php81-laravel ./apache/php81-laravel
 docker build -t nails/docker-env-webserver:apache-php82-laravel ./apache/php82-laravel
+docker build -t nails/docker-env-webserver:apache-php83-laravel ./apache/php83-laravel
+docker build -t nails/docker-env-webserver:apache-php84-laravel ./apache/php84-laravel
 
 # WordPress images
 docker build -t nails/docker-env-webserver:apache-php72-wordpress ./apache/php72-wordpress
@@ -134,6 +150,8 @@ docker build -t nails/docker-env-webserver:apache-php74-wordpress ./apache/php74
 docker build -t nails/docker-env-webserver:apache-php80-wordpress ./apache/php80-wordpress
 docker build -t nails/docker-env-webserver:apache-php81-wordpress ./apache/php81-wordpress
 docker build -t nails/docker-env-webserver:apache-php82-wordpress ./apache/php82-wordpress
+docker build -t nails/docker-env-webserver:apache-php83-wordpress ./apache/php83-wordpress
+docker build -t nails/docker-env-webserver:apache-php84-wordpress ./apache/php84-wordpress
 
 # Push changes
 docker push nails/docker-env-webserver -a
