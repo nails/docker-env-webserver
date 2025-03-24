@@ -62,7 +62,7 @@ RUN useradd -u 1000 -m www-bridge-user && \
     cd /root/acme.sh && \
     /root/acme.sh/acme.sh --install --cert-home "/root/acme.sh/certs" && \
     # Install: Node, n, and yarn
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y \
         nodejs && \
     npm install -gy \
