@@ -87,7 +87,16 @@
             "cp -R ./apache/common-xdebug ./apache/php83-xdebug/templates",
             "cp -R ./apache/common-xdebug ./apache/php83-nails-xdebug/templates",
             "cp -R ./apache/common-xdebug ./apache/php83-laravel-xdebug/templates",
-            "cp -R ./apache/common-xdebug ./apache/php83-wordpress-xdebug/templates"
+            "cp -R ./apache/common-xdebug ./apache/php83-wordpress-xdebug/templates",
+
+            "cp -R ./apache/common ./apache/php84/templates",
+            "cp -R ./apache/common-nails ./apache/php84-nails/templates",
+            "cp -R ./apache/common-laravel ./apache/php84-laravel/templates",
+            "cp -R ./apache/common-wordpress ./apache/php84-wordpress/templates",
+            "cp -R ./apache/common-xdebug ./apache/php84-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php84-nails-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php84-laravel-xdebug/templates",
+            "cp -R ./apache/common-xdebug ./apache/php84-wordpress-xdebug/templates"
         ],
         "delete-templates": [
             "rm -rf ./apache/php72/templates",
@@ -151,7 +160,16 @@
             "rm -rf ./apache/php83-laravel/templates",
             "rm -rf ./apache/php83-laravel-xdebug/templates",
             "rm -rf ./apache/php83-wordpress/templates",
-            "rm -rf ./apache/php83-wordpress-xdebug/templates"
+            "rm -rf ./apache/php83-wordpress-xdebug/templates",
+
+            "rm -rf ./apache/php84/templates",
+            "rm -rf ./apache/php84-xdebug/templates",
+            "rm -rf ./apache/php84-nails/templates",
+            "rm -rf ./apache/php84-nails-xdebug/templates",
+            "rm -rf ./apache/php84-laravel/templates",
+            "rm -rf ./apache/php84-laravel-xdebug/templates",
+            "rm -rf ./apache/php84-wordpress/templates",
+            "rm -rf ./apache/php84-wordpress-xdebug/templates"
         ],
         "compile-base": [
             "@composer copy-templates",
@@ -162,6 +180,7 @@
             "docker build -t nails/docker-env-webserver:apache-php81 ./apache/php81",
             "docker build -t nails/docker-env-webserver:apache-php82 ./apache/php82",
             "docker build -t nails/docker-env-webserver:apache-php83 ./apache/php83",
+            "docker build -t nails/docker-env-webserver:apache-php84 ./apache/php84",
             "@composer delete-templates"
         ],
         "compile-base-xdebug": [
@@ -173,6 +192,7 @@
             "docker build -t nails/docker-env-webserver:apache-php81-xdebug ./apache/php81-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php82-xdebug ./apache/php82-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php83-xdebug ./apache/php83-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php84-xdebug ./apache/php84-xdebug",
             "@composer delete-templates"
         ],
         "compile-nails": [
@@ -184,6 +204,7 @@
             "docker build -t nails/docker-env-webserver:apache-php81-nails ./apache/php81-nails",
             "docker build -t nails/docker-env-webserver:apache-php82-nails ./apache/php82-nails",
             "docker build -t nails/docker-env-webserver:apache-php83-nails ./apache/php83-nails",
+            "docker build -t nails/docker-env-webserver:apache-php84-nails ./apache/php84-nails",
             "@composer delete-templates"
         ],
         "compile-nails-xdebug": [
@@ -195,6 +216,7 @@
             "docker build -t nails/docker-env-webserver:apache-php81-nails-xdebug ./apache/php81-nails-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php82-nails-xdebug ./apache/php82-nails-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php83-nails-xdebug ./apache/php82-nails-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php84-nails-xdebug ./apache/php82-nails-xdebug",
             "@composer delete-templates"
         ],
         "compile-laravel": [
@@ -206,6 +228,7 @@
             "docker build -t nails/docker-env-webserver:apache-php81-laravel ./apache/php81-laravel",
             "docker build -t nails/docker-env-webserver:apache-php82-laravel ./apache/php82-laravel",
             "docker build -t nails/docker-env-webserver:apache-php83-laravel ./apache/php83-laravel",
+            "docker build -t nails/docker-env-webserver:apache-php84-laravel ./apache/php84-laravel",
             "@composer delete-templates"
         ],
         "compile-laravel-xdebug": [
@@ -217,6 +240,7 @@
             "docker build -t nails/docker-env-webserver:apache-php81-laravel-xdebug ./apache/php81-laravel-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php82-laravel-xdebug ./apache/php82-laravel-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php83-laravel-xdebug ./apache/php83-laravel-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php84-laravel-xdebug ./apache/php84-laravel-xdebug",
             "@composer delete-templates"
         ],
         "compile-wordpress": [
@@ -228,6 +252,7 @@
             "docker build -t nails/docker-env-webserver:apache-php81-wordpress ./apache/php81-wordpress",
             "docker build -t nails/docker-env-webserver:apache-php82-wordpress ./apache/php82-wordpress",
             "docker build -t nails/docker-env-webserver:apache-php83-wordpress ./apache/php83-wordpress",
+            "docker build -t nails/docker-env-webserver:apache-php84-wordpress ./apache/php84-wordpress",
             "@composer delete-templates"
         ],
         "compile-wordpress-xdebug": [
@@ -239,6 +264,7 @@
             "docker build -t nails/docker-env-webserver:apache-php81-wordpress-xdebug ./apache/php81-wordpress-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php82-wordpress-xdebug ./apache/php82-wordpress-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php83-wordpress-xdebug ./apache/php83-wordpress-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php84-wordpress-xdebug ./apache/php84-wordpress-xdebug",
             "@composer delete-templates"
         ],
         "push": [
