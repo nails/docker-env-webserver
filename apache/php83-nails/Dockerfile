@@ -1,4 +1,4 @@
-FROM nails/docker-env-webserver:apache-php82
+FROM nails/docker-env-webserver:apache-php83
 
 COPY templates/install-framework.sh /install-framework.sh
 

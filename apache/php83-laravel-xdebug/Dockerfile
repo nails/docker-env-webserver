@@ -1,4 +1,4 @@
-FROM nails/docker-env-webserver:apache-php82-laravel
+FROM nails/docker-env-webserver:apache-php83-laravel
 
 # Install: configuration files
 COPY templates/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
