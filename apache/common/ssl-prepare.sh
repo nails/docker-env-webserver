@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -f .env ]; then
+    source .env
+fi
+
 # Remove www.
 if [[ $DOMAIN =~ ^www\. ]]; then
     SSL_DOMAIN=${DOMAIN:4};
