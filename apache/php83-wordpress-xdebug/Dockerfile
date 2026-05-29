@@ -4,5 +4,5 @@ FROM nails/docker-env-webserver:apache-php83-wordpress
 COPY templates/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Install: Xdebug
-RUN pecl install xdebug-3.4.3 \
+RUN pecl install xdebug-3.5.1 \
     && docker-php-ext-enable xdebug
