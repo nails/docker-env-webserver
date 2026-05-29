@@ -83,6 +83,10 @@ RUN useradd -u 1000 -m www-bridge-user && \
         pdo \
         pdo_mysql \
         zip && \
+    # PHP 8.5 ships opcache as a static (built-in) extension — remove the shared
+    # extension directive that causes "Failed loading Zend extension 'opcache.so'"
+    sed -i '/^zend_extension=opcache/d' /usr/local/etc/php/conf.d/opcache.ini && \
+    (docker-php-ext-enable opcache 2>/dev/null || true) && \
     # Install: Xdebug
     if [ "$PHP_XDEBUG" = "1" ]; then pecl install xdebug; else rm /usr/local/etc/php/conf.d/xdebug.ini; fi && \
     # Install: Blackfire
