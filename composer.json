@@ -130,8 +130,8 @@
             "@composer copy-templates",
             "docker build -t nails/docker-env-webserver:apache-php81-nails-xdebug ./apache/php81-nails-xdebug",
             "docker build -t nails/docker-env-webserver:apache-php82-nails-xdebug ./apache/php82-nails-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php83-nails-xdebug ./apache/php82-nails-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php84-nails-xdebug ./apache/php82-nails-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php83-nails-xdebug ./apache/php83-nails-xdebug",
+            "docker build -t nails/docker-env-webserver:apache-php84-nails-xdebug ./apache/php84-nails-xdebug",
             "@composer delete-templates"
         ],
         "compile-laravel": [
