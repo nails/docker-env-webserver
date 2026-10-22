@@ -14,16 +14,13 @@
     "scripts": {
         "compile-all-and-push": [
             "@composer compile-base",
-            "@composer push",
             "@composer compile-nails",
             "@composer compile-laravel",
             "@composer compile-wordpress",
-            "@composer push",
             "@composer compile-base-xdebug",
             "@composer compile-nails-xdebug",
             "@composer compile-laravel-xdebug",
-            "@composer compile-wordpress-xdebug",
-            "@composer push"
+            "@composer compile-wordpress-xdebug"
         ],
         "copy-templates": [
             "@composer delete-templates",
@@ -105,70 +102,49 @@
         ],
         "compile-base": [
             "@composer copy-templates",
-            "docker build -t nails/docker-env-webserver:apache-php82 ./apache/php82",
-            "docker build -t nails/docker-env-webserver:apache-php83 ./apache/php83",
-            "docker build -t nails/docker-env-webserver:apache-php84 ./apache/php84",
-            "docker build -t nails/docker-env-webserver:apache-php85 ./apache/php85",
+            "bin/build.sh php82 php83 php84 php85",
             "@composer delete-templates"
         ],
         "compile-base-xdebug": [
             "@composer copy-templates",
-            "docker build -t nails/docker-env-webserver:apache-php82-xdebug ./apache/php82-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php83-xdebug ./apache/php83-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php84-xdebug ./apache/php84-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php85-xdebug ./apache/php85-xdebug",
+            "bin/build.sh php82-xdebug php83-xdebug php84-xdebug php85-xdebug",
             "@composer delete-templates"
         ],
         "compile-nails": [
             "@composer copy-templates",
-            "docker build -t nails/docker-env-webserver:apache-php82-nails ./apache/php82-nails",
-            "docker build -t nails/docker-env-webserver:apache-php83-nails ./apache/php83-nails",
-            "docker build -t nails/docker-env-webserver:apache-php84-nails ./apache/php84-nails",
-            "docker build -t nails/docker-env-webserver:apache-php85-nails ./apache/php85-nails",
+            "bin/build.sh php82-nails php83-nails php84-nails php85-nails",
             "@composer delete-templates"
         ],
         "compile-nails-xdebug": [
             "@composer copy-templates",
-            "docker build -t nails/docker-env-webserver:apache-php82-nails-xdebug ./apache/php82-nails-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php83-nails-xdebug ./apache/php83-nails-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php84-nails-xdebug ./apache/php84-nails-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php85-nails-xdebug ./apache/php85-nails-xdebug",
+            "bin/build.sh php82-nails-xdebug php83-nails-xdebug php84-nails-xdebug php85-nails-xdebug",
             "@composer delete-templates"
         ],
         "compile-laravel": [
             "@composer copy-templates",
-            "docker build -t nails/docker-env-webserver:apache-php82-laravel ./apache/php82-laravel",
-            "docker build -t nails/docker-env-webserver:apache-php83-laravel ./apache/php83-laravel",
-            "docker build -t nails/docker-env-webserver:apache-php84-laravel ./apache/php84-laravel",
-            "docker build -t nails/docker-env-webserver:apache-php85-laravel ./apache/php85-laravel",
+            "bin/build.sh php82-laravel php83-laravel php84-laravel php85-laravel",
             "@composer delete-templates"
         ],
         "compile-laravel-xdebug": [
             "@composer copy-templates",
-            "docker build -t nails/docker-env-webserver:apache-php82-laravel-xdebug ./apache/php82-laravel-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php83-laravel-xdebug ./apache/php83-laravel-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php84-laravel-xdebug ./apache/php84-laravel-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php85-laravel-xdebug ./apache/php85-laravel-xdebug",
+            "bin/build.sh php82-laravel-xdebug php83-laravel-xdebug php84-laravel-xdebug php85-laravel-xdebug",
             "@composer delete-templates"
         ],
         "compile-wordpress": [
             "@composer copy-templates",
-            "docker build -t nails/docker-env-webserver:apache-php82-wordpress ./apache/php82-wordpress",
-            "docker build -t nails/docker-env-webserver:apache-php83-wordpress ./apache/php83-wordpress",
-            "docker build -t nails/docker-env-webserver:apache-php84-wordpress ./apache/php84-wordpress",
-            "docker build -t nails/docker-env-webserver:apache-php85-wordpress ./apache/php85-wordpress",
+            "bin/build.sh php82-wordpress php83-wordpress php84-wordpress php85-wordpress",
             "@composer delete-templates"
         ],
         "compile-wordpress-xdebug": [
             "@composer copy-templates",
-            "docker build -t nails/docker-env-webserver:apache-php82-wordpress-xdebug ./apache/php82-wordpress-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php83-wordpress-xdebug ./apache/php83-wordpress-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php84-wordpress-xdebug ./apache/php84-wordpress-xdebug",
-            "docker build -t nails/docker-env-webserver:apache-php85-wordpress-xdebug ./apache/php85-wordpress-xdebug",
+            "bin/build.sh php82-wordpress-xdebug php83-wordpress-xdebug php84-wordpress-xdebug php85-wordpress-xdebug",
             "@composer delete-templates"
         ],
         "push": [
-            "docker push nails/docker-env-webserver -a"
+            "@php -r \"echo 'compile-* scripts push multi-arch images as they build. docker push -a would overwrite them with single-arch local images, so it has been removed.'.PHP_EOL;\""
         ]
+    },
+    "config": {
+        "process-timeout": 0
     }
 }

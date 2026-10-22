@@ -9,7 +9,7 @@ These Dockerfiles build an Apache2 webserver, configured with PHP and various ot
     + Mod: Headers
     + Mod: Expires
 - acme.sh
-- PHP (`72`, `73`, `74`, `80`, `81`, `82`, `83`, `84`)
+- PHP (`82`, `83`, `84`, `85`)
     + Extension: PDO
     + Extension: MySQLi
     + Extension: GD
@@ -17,7 +17,7 @@ These Dockerfiles build an Apache2 webserver, configured with PHP and various ot
     + Extension: Zip
     + Extension: INTL
 - Composer
-- Node (16)
+- Node (22)
 - Yarn
 - Xdebug (if `$PHP_XDEBUG` is `1`)
 - Blackfire (if `$PHP_BLACKFIRE` is `1`)
@@ -34,125 +34,73 @@ apache-php<version>-wordpress
 
 ## Tags
 
+Every tag is published for both `linux/amd64` (servers) and `linux/arm64` (Apple Silicon).
+
 ```bash
+nails/docker-env-webserver:apache-php85
+nails/docker-env-webserver:apache-php85-laravel
+nails/docker-env-webserver:apache-php85-nails
+nails/docker-env-webserver:apache-php85-wordpress
 nails/docker-env-webserver:apache-php84
 nails/docker-env-webserver:apache-php84-laravel
 nails/docker-env-webserver:apache-php84-nails
 nails/docker-env-webserver:apache-php84-wordpress
-
 nails/docker-env-webserver:apache-php83
 nails/docker-env-webserver:apache-php83-laravel
 nails/docker-env-webserver:apache-php83-nails
 nails/docker-env-webserver:apache-php83-wordpress
-
 nails/docker-env-webserver:apache-php82
 nails/docker-env-webserver:apache-php82-laravel
 nails/docker-env-webserver:apache-php82-nails
 nails/docker-env-webserver:apache-php82-wordpress
-
-nails/docker-env-webserver:apache-php81
-nails/docker-env-webserver:apache-php81-laravel
-nails/docker-env-webserver:apache-php81-nails
-nails/docker-env-webserver:apache-php81-wordpress
-
-nails/docker-env-webserver:apache-php80
-nails/docker-env-webserver:apache-php80-laravel
-nails/docker-env-webserver:apache-php80-nails
-nails/docker-env-webserver:apache-php80-wordpress
-
-nails/docker-env-webserver:apache-php74
-nails/docker-env-webserver:apache-php74-laravel
-nails/docker-env-webserver:apache-php74-nails
-nails/docker-env-webserver:apache-php74-wordpress
-
-nails/docker-env-webserver:apache-php73
-nails/docker-env-webserver:apache-php73-laravel
-nails/docker-env-webserver:apache-php73-nails
-nails/docker-env-webserver:apache-php73-wordpress
-
-nails/docker-env-webserver:apache-php72
-nails/docker-env-webserver:apache-php72-laravel
-nails/docker-env-webserver:apache-php72-nails
-nails/docker-env-webserver:apache-php72-wordpress
 ```
+
+Each tag also has an `-xdebug` variant, e.g. `apache-php85-nails-xdebug`.
 
 
 
 ## Building
 
-To compile and publish changes to these containers use the following commands:
+Images are built with `docker buildx` for `linux/amd64` and `linux/arm64` and pushed to Docker Hub as a single multi-arch tag, so the same tag works on an M-series Mac and on an x86 server. This works from either kind of machine; the non-native architecture is built under emulation and is slower (enable "Use Rosetta for x86_64/amd64 emulation" in Docker Desktop to speed this up on a Mac).
 
 ```bash
-docker build -t nails/docker-env-webserver:apache-php<version><framework> ./apache/php<version><framework>
-docker push nails/docker-env-webserver -a
-```
-
-Composer scripts are available to make this easier:
-
-```bash
-# Compile and push everything, in the correct order
+# Build and push everything, in the correct order
 composer compile-all-and-push
 
-# Compile just the specific frameworks
+# Build and push a single group
 composer compile-base
 composer compile-nails
 composer compile-laravel
 composer compile-wordpress
+composer compile-base-xdebug
+composer compile-nails-xdebug
+composer compile-laravel-xdebug
+composer compile-wordpress-xdebug
+```
 
-# Push tags to Docker Hub
-composer push
+The `compile-*` scripts **push as they build** — a multi-arch image can't be held in the classic local image store, so there is no separate push step. `docker push nails/docker-env-webserver -a` must not be used: it pushes whatever single-architecture images are in the local store and overwrites the multi-arch tags.
+
+Each pushed tag is checked with `docker buildx imagetools inspect`, and the build fails if either platform is missing.
+
+`bin/build.sh` does the work and can be called directly (run `composer copy-templates` first, `composer delete-templates` after):
+
+```bash
+bin/build.sh php85 php85-nails
+```
+
+The first run creates a `docker-container` buildx builder named `nails-multiarch`; your default builder is left unchanged.
+
+
+### Testing changes locally
+
+To build for your own machine only, without pushing anything, set `LOCAL=1`. Images are loaded into the local image store, and framework images build `FROM` your local base image:
+
+```bash
+LOCAL=1 composer compile-base
+LOCAL=1 composer compile-nails
 ```
 
 
 ### Order is important
 
-Build the base images, and push them, before building the framework images:
-
-```bash
-docker build -t nails/docker-env-webserver:apache-php72 ./apache/php72
-docker build -t nails/docker-env-webserver:apache-php73 ./apache/php73
-docker build -t nails/docker-env-webserver:apache-php74 ./apache/php74
-docker build -t nails/docker-env-webserver:apache-php80 ./apache/php80
-docker build -t nails/docker-env-webserver:apache-php81 ./apache/php81
-docker build -t nails/docker-env-webserver:apache-php82 ./apache/php82
-docker build -t nails/docker-env-webserver:apache-php83 ./apache/php83
-docker build -t nails/docker-env-webserver:apache-php84 ./apache/php84
-docker push nails/docker-env-webserver -a
-```
-
-Once base images are pushed, build the framework images:
-
-```bash
-# Nails images
-docker build -t nails/docker-env-webserver:apache-php72-nails ./apache/php72-nails
-docker build -t nails/docker-env-webserver:apache-php73-nails ./apache/php73-nails
-docker build -t nails/docker-env-webserver:apache-php74-nails ./apache/php74-nails
-docker build -t nails/docker-env-webserver:apache-php80-nails ./apache/php80-nails
-docker build -t nails/docker-env-webserver:apache-php81-nails ./apache/php81-nails
-docker build -t nails/docker-env-webserver:apache-php82-nails ./apache/php82-nails
-docker build -t nails/docker-env-webserver:apache-php83-nails ./apache/php83-nails
-docker build -t nails/docker-env-webserver:apache-php84-nails ./apache/php84-nails
-
-# Laravel images
-docker build -t nails/docker-env-webserver:apache-php72-laravel ./apache/php72-laravel
-docker build -t nails/docker-env-webserver:apache-php73-laravel ./apache/php73-laravel
-docker build -t nails/docker-env-webserver:apache-php74-laravel ./apache/php74-laravel
-docker build -t nails/docker-env-webserver:apache-php80-laravel ./apache/php80-laravel
-docker build -t nails/docker-env-webserver:apache-php81-laravel ./apache/php81-laravel
-docker build -t nails/docker-env-webserver:apache-php82-laravel ./apache/php82-laravel
-docker build -t nails/docker-env-webserver:apache-php83-laravel ./apache/php83-laravel
-docker build -t nails/docker-env-webserver:apache-php84-laravel ./apache/php84-laravel
-
-# WordPress images
-docker build -t nails/docker-env-webserver:apache-php72-wordpress ./apache/php72-wordpress
-docker build -t nails/docker-env-webserver:apache-php73-wordpress ./apache/php73-wordpress
-docker build -t nails/docker-env-webserver:apache-php74-wordpress ./apache/php74-wordpress
-docker build -t nails/docker-env-webserver:apache-php80-wordpress ./apache/php80-wordpress
-docker build -t nails/docker-env-webserver:apache-php81-wordpress ./apache/php81-wordpress
-docker build -t nails/docker-env-webserver:apache-php82-wordpress ./apache/php82-wordpress
-docker build -t nails/docker-env-webserver:apache-php83-wordpress ./apache/php83-wordpress
-docker build -t nails/docker-env-webserver:apache-php84-wordpress ./apache/php84-wordpress
-
-# Push changes
-docker push nails/docker-env-webserver -a
-```
+Framework images (`-nails`, `-laravel`, `-wordpress`) build `FROM` the base image, and `-xdebug` images build `FROM` their non-xdebug counterpart. A multi-arch build pulls the parent from Docker Hub, so the parent must be built and pushed first. `composer compile-all-and-push` does this in the right order.
